@@ -1,0 +1,5 @@
+# 27 Mars
+- Création de l'environnement de travail
+- Gitlab pas concluant (problème de sshkey) ==> Github
+- Revue des données disponibles
+- Recherche de données supplémentaires
