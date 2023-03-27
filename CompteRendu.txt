@@ -3,3 +3,4 @@
 - Gitlab pas concluant (problème de sshkey) ==> Github
 - Revue des données disponibles
 - Recherche de données supplémentaires
+- Pour le temps d'attente, peut-être faire une estimation avec les horaires d'affluence de maps ?
