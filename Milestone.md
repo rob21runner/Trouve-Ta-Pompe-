@@ -1,4 +1,10 @@
-# 27 Mars
+# Journal de bord
+
+## Lundi 27 mars 2023
+
+Aujourd'hui, nous avons embarqué pour une nouvelle aventure pleine d'épreuves
+
+Les épreuves surmontées en ce jour de début d'aventure sont :
 - Création de l'environnement de travail
 - Gitlab pas concluant (problème de sshkey) ==> Github
 - Revue des données disponibles
