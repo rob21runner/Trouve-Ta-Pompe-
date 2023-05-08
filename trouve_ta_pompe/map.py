@@ -5,7 +5,23 @@ import branca
 import numpy as np
 import pandas as pd
 from geopy.geocoders import Nominatim
+import pandas as pd
+from datetime import date, datetime
 
+df = pd.read_csv('Freq.csv')
+heureActuelle = int(datetime.now().hour)
+jourActuel = int(datetime.now().date().strftime('%w'))
+
+def get_frequentation(idstation):
+    freqLignes = df.loc[(df['id'] == idstation) & (df['Heure'] == heureActuelle) & (df['Jour'] == jourActuel)]
+    print(freqLignes)
+    try :
+        freq = freqLignes['Frequentation'].values[0]
+        print("Oui")
+        return freq
+    except :
+        print("No")
+        return "PAS D'INFORMATION"
 
 def get_ip():
     response = requests.get('https://api64.ipify.org?format=json').json()
@@ -128,7 +144,7 @@ def clean_data(values):
     return dt
 
 
-def make_popup(adress, distance, maj, sp98, sp95, e10, e85, gazole, gplc):
+def make_popup(id, adress, distance, maj, sp98, sp95, e10, e85, gazole, gplc):
     html = """<!DOCTYPE html>
     <html>
     <style>
@@ -206,7 +222,7 @@ def make_popup(adress, distance, maj, sp98, sp95, e10, e85, gazole, gplc):
                 </div>
             </div>
             <div class="cat">
-                <div class="title" style="margin-bottom: 10px">Fréquentation : Elevée</div>
+                <div class="title" style="margin-bottom: 10px">Fréquentation : """ + get_frequentation(id) + """</div>
             </div>
         </div>
     </body>
@@ -264,7 +280,7 @@ def add_pump(dt, m):
         else:
             gplc = None
         adresse = f"{val['Adresse']}, {val['Code']} {val['Ville']}"
-        html = make_popup(adresse, str(float(int(float(val['Distance'])))/1000), maj, str(sp98), str(sp95), str(e10), str(e85),
+        html = make_popup(val['Id'], adresse, str(float(int(float(val['Distance'])))/1000), maj, str(sp98), str(sp95), str(e10), str(e85),
                           str(gazole), str(gplc))
         iframe = branca.element.IFrame(html=html, width=450, height=230)
         popup = folium.Popup(iframe, parse_html=True)
