@@ -1,0 +1,2 @@
+[console_scripts]
+trouve = trouve_ta_pompe.cli:main
