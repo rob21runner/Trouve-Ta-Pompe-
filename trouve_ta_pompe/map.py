@@ -1,5 +1,6 @@
 import folium
 from folium.plugins import MarkerCluster
+import os.path as path
 import requests
 import branca
 import numpy as np
@@ -8,19 +9,25 @@ from geopy.geocoders import Nominatim
 import pandas as pd
 from datetime import date, datetime
 
-df = pd.read_csv('Freq.csv')
+
+df = pd.read_csv('https://1drv.ms/u/s!AlV1qhCuSmXgvzKFGPW6NgkzhaoL?e=5eQwH6')
+print(df)
 heureActuelle = int(datetime.now().hour)
 jourActuel = int(datetime.now().date().strftime('%w'))
 
 def get_frequentation(idstation):
     freqLignes = df.loc[(df['id'] == idstation) & (df['Heure'] == heureActuelle) & (df['Jour'] == jourActuel)]
-    print(freqLignes)
     try :
         freq = freqLignes['Frequentation'].values[0]
-        print("Oui")
-        return freq
+        occupation = ""
+        if freq < 20:
+            occupation = "Faible"
+        elif freq < 50:
+            occupation = "Moyenne"
+        else:
+            occupation = "Elevé"
+        return occupation
     except :
-        print("No")
         return "PAS D'INFORMATION"
 
 def get_ip():
@@ -222,7 +229,7 @@ def make_popup(id, adress, distance, maj, sp98, sp95, e10, e85, gazole, gplc):
                 </div>
             </div>
             <div class="cat">
-                <div class="title" style="margin-bottom: 10px">Fréquentation : """ + get_frequentation(id) + """</div>
+                <div class="title" style="margin-bottom: 10px">Fréquentation : """ + str(get_frequentation(str(id))) + """</div>
             </div>
         </div>
     </body>

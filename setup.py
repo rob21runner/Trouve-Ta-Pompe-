@@ -8,7 +8,7 @@ with open("requirements.txt") as f:
 
 setup(
     name="trouve_ta_pompe",
-    version="0.5.6",
+    version="0.6.4",
     author="Guerard Robin, Maureen Metge, Nazir Youssouf",
     packages=["trouve_ta_pompe"],
     entry_points={
