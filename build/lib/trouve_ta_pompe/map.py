@@ -9,8 +9,10 @@ from geopy.geocoders import Nominatim
 import pandas as pd
 from datetime import date, datetime
 
-
-df = pd.read_csv(path.join(path.dirname(path.abspath(__file__)), 'data', 'Freq.csv'))
+# url = 'https://raw.githubusercontent.com/username/repository/branch/path/to/file.txt'
+# response = requests.get(url)
+df = pd.read_csv('https://raw.githubusercontent.com/rob21runner/Trouve-Ta-Pompe-/main/trouve_ta_pompe/data/Freq.csv')
+# print(df)
 heureActuelle = int(datetime.now().hour)
 jourActuel = int(datetime.now().date().strftime('%w'))
 

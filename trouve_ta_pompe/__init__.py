@@ -1,4 +1,4 @@
-from map import create_map
+from .map import create_map
 
 
 def show_map():
